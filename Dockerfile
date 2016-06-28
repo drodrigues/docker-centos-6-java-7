@@ -7,4 +7,4 @@ RUN /assets/setup.sh
 
 EXPOSE 22
 
-CMD /usr/sbin/sshd -D
+ENTRYPOINT service sshd start && bash
