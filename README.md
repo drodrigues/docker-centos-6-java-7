@@ -9,7 +9,7 @@ docker pull drodrigues/centos-6-java-7
 
 #####Run with 22 port opened:
 ```
-docker run -d -p 51022:22 drodrigues/centos-6-java-7
+docker run -t -i -p 51022:22 --name centos6 drodrigues/centos-6-java-7
 ```
 
 #####Login by SSH
