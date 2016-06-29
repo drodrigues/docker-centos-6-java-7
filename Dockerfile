@@ -32,6 +32,12 @@ ENV JAVA_HOME /usr/java/jdk1.7.0_79/jre
 # Remove installation files
 RUN rm /opt/jre-7u79-linux-x64.rpm
 
+# Fix locale
+RUN echo "export LC_ALL=C" >> /etc/profile
+RUN sed -ri "s/^LANG=\"en_US.UTF-8\"/LANG=\"en_US.utf8\"/" /etc/sysconfig/i18n
+RUN echo "LC_ALL=\"en_US.UTF-8\"" >> /etc/sysconfig/i18n
+RUN echo "LANGUAGE=\"en_US\"" >> /etc/sysconfig/i18n
+
 EXPOSE 22
 
 CMD ["/usr/sbin/sshd", "-D"]
