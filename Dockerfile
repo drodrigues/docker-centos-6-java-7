@@ -24,13 +24,15 @@ RUN yum -y install wget
 
 #Install Java 7 update 79
 WORKDIR /opt/
-RUN wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jre-7u79-linux-x64.rpm"
-RUN yum -y localinstall jre-7u79-linux-x64.rpm
-RUN echo "export JAVA_HOME=/usr/java/jdk1.7.0_79/jre" >> /etc/profile
-ENV JAVA_HOME /usr/java/jdk1.7.0_79/jre
+RUN wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-x64.rpm"
+RUN yum -y localinstall jdk-7u79-linux-x64.rpm
+RUN echo "export JAVA_HOME=/usr/java/jdk1.7.0_79" >> /etc/profile
+RUN echo "export JRE_HOME=/usr/java/jdk1.7.0_79/jre" >> /etc/profile
+ENV JAVA_HOME /usr/java/jdk1.7.0_79
+ENV JRE_HOME /usr/java/jdk1.7.0_79/jre
 
 # Remove installation files
-RUN rm /opt/jre-7u79-linux-x64.rpm
+RUN rm /opt/jdk-7u79-linux-x64.rpm
 
 # Fix locale
 RUN echo "export LC_ALL=C" >> /etc/profile
